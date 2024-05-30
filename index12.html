@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutor Booking System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 1em;
+        }
+        div + div {
+            margin-top: 1em;
+        }
+        label {
+            display: block;
+            margin-bottom: .5em;
+            color: #333333;
+        }
+        select, input {
+            border: 1px solid #ccc;
+            padding: .5em;
+            font-size: 1em;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            padding: .7em;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: .3em;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .bookings {
+            max-width: 100%;
+            margin: 1em auto;
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 1em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1em 0;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: .5em;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        caption {
+            caption-side: top;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tutor Booking System</h1>
+    <form id="bookingForm">
+        <div>
+            <label for="tutor">Select Tutor:</label>
+            <select id="tutor" name="tutor" required>
+                <option value="Pete">Pete</option>
+                <option value="Brendan">Brendan</option>
+                <option value="Anyone">Anyone</option>
+            </select>
+        </div>
+        <div>
+            <label for="location">Select Location:</label>
+            <select id="location" name="location" required>
+                <option value="BishanJ8">BishanJ8</option>
+                <option value="ClementiMall">ClementiMall</option>
+                <option value="ThomsonPza">ThomsonPza</option>
+            </select>
+        </div>
+        <div>
+            <label for="subject">Select Subject:</label>
+            <select id="subject" name="subject" required>
+                <option value="Math">Math</option>
+                <option value="Science">Science</option>
+                <option value="English">English</option>
+            </select>
+        </div>
+        <div>
+            <label for="date">Select Date:</label>
+            <input type="date" id="date" name="date" required>
+        </div>
+        <div>
+            <label for="timeSlot">Select Time Slot:</label>
+            <select id="timeSlot" name="timeSlot" required>
+                <option value="09:00 - 09:30">09:00 - 09:30</option>
+                <option value="09:30 - 10:00">09:30 - 10:00</option>
+                <option value="10:00 - 10:30">10:00 - 10:30</option>
+                <option value="10:30 - 11:00">10:30 - 11:00</option>
+                <option value="11:00 - 11:30">11:00 - 11:30</option>
+                <option value="11:30 - 12:00">11:30 - 12:00</option>
+                <option value="12:00 - 12:30">12:00 - 12:30</option>
+                <option value="12:30 - 13:00">12:30 - 13:00</option>
+                <option value="13:00 - 13:30">13:00 - 13:30</option>
+                <option value="13:30 - 14:00">13:30 - 14:00</option>
+                <option value="14:00 - 14:30">14:00 - 14:30</option>
+                <option value="14:30 - 15:00">14:30 - 15:00</option>
+                <option value="15:00 - 15:30">15:00 - 15:30</option>
+                <option value="15:30 - 16:00">15:30 - 16:00</option>
+                <option value="16:00 - 16:30">16:00 - 16:30</option>
+                <option value="16:30 - 17:00">16:30 - 17:00</option>
+                <option value="17:00 - 17:30">17:00 - 17:30</option>
+                <option value="17:30 - 18:00">17:30 - 18:00</option>
+                <option value="18:00 - 18:30">18:00 - 18:30</option>
+                <option value="18:30 - 19:00">18:30 - 19:00</option>
+                <option value="19:00 - 19:30">19:00 - 19:30</option>
+                <option value="19:30 - 20:00">19:30 - 20:00</option>
+                <option value="20:00 - 20:30">20:00 - 20:30</option>
+                <option value="20:30 - 21:00">20:30 - 21:00</option>
+            </select>
+        </div>
+        <div>
+            <label for="student">Select Student:</label>
+            <select id="student" name="student" required>
+                <option value="S101 - Alice">S101 - Alice</option>
+                <option value="S102 - Bob">S102 - Bob</option>
+                <option value="S103 - Charlie">S103 - Charlie</option>
+                <option value="S104 - David">S104 - David</option>
+                <option value="S105 - Eve">S105 - Eve</option>
+                <option value="S106 - Frank">S106 - Frank</option>
+                <option value="S107 - Grace">S107 - Grace</option>
+                <option value="S108 - Heidi">S108 - Heidi</option>
+                <option value="S109 - Ivan">S109 - Ivan</option>
+                <option value="S110 - Judy">S110 - Judy</option>
+            </select>
+        </div>
+        <button type="submit">Book</button>
+    </form>
+    <div class="bookings" id="bookings">
+        <h2>Bookings</h2>
+        <button onclick="prevWeek()">Previous Week</button>
+        <button onclick="nextWeek()">Next Week</button>
+    </div>
+    <script>
+        const form = document.getElementById('bookingForm');
+        const bookingsDiv = document.getElementById('bookings');
+        const timeSlots = [
+            '09:00 - 09:30', '09:30 - 10:00', '10:00 - 10:30', '10:30 - 11:00', 
+            '11:00 - 11:30', '11:30 - 12:00', '12:00 - 12:30', '12:30 - 13:00',
+            '13:00 - 13:30', '13:30 - 14:00', '14:00 - 14:30', '14:30 - 15:00',
+            '15:00 - 15:30', '15:30 - 16:00', '16:00 - 16:30', '16:30 - 17:00',
+            '17:00 - 17:30', '17:30 - 18:00', '18:00 - 18:30', '18:30 - 19:00',
+            '19:00 - 19:30', '19:30 - 20:00', '20:00 - 20:30', '20:30 - 21:00'
+        ];
+
+        let bookings = {
+            "Pete": {},
+            "Brendan": {},
+            "Anyone": {}
+        };
+        let currentWeekStart = new Date();
+
+        function getWeekStart(date) {
+            const day = date.getDay();
+            const diff = date.getDate() - day + (day === 1 ? 0 : (day === 0 ? -6 : 1)); // Adjust to Monday
+            return new Date(date.setDate(diff));
+        }
+
+        function formatDate(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        function prevWeek() {
+            currentWeekStart.setDate(currentWeekStart.getDate() - 7);
+            renderTables();
+        }
+
+        function nextWeek() {
+            currentWeekStart.setDate(currentWeekStart.getDate() + 7);
+            renderTables();
+        }
+
+        function renderTables() {
+            bookingsDiv.innerHTML = '<h2>Bookings</h2><button onclick="prevWeek()">Previous Week</button><button onclick="nextWeek()">Next Week</button>';
+
+            const weekStart = getWeekStart(new Date(currentWeekStart));
+            const weekDates = [];
+            for (let i = 0; i < 7; i++) {
+                const date = new Date(weekStart);
+                date.setDate(weekStart.getDate() + i);
+                weekDates.push(formatDate(date));
+            }
+
+            for (const tutor in bookings) {
+                const tutorTable = document.createElement('table');
+                tutorTable.id = `${tutor}-table`;
+                tutorTable.innerHTML = `
+                    <caption>${tutor}</caption>
+                    <thead>
+                        <tr>
+                            <th>Time Slot</th>
+                            ${weekDates.map(date => `<th>${date}</th>`).join('')}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${timeSlots.map(slot => `
+                            <tr>
+                                <td>${slot}</td>
+                                ${weekDates.map(date => `
+                                    <td>${bookings[tutor][date] && bookings[tutor][date][slot] ? bookings[tutor][date][slot] : ''}</td>
+                                `).join('')}
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                `;
+                bookingsDiv.appendChild(tutorTable);
+            }
+            updateAvailableTimeSlots();
+        }
+
+        function updateAvailableTimeSlots() {
+            const date = document.getElementById('date').value;
+            const tutor = document.getElementById('tutor').value;
+            const timeSlotSelect = document.getElementById('timeSlot');
+
+            if (date && tutor) {
+                const bookedSlots = bookings[tutor] && bookings[tutor][date] ? Object.keys(bookings[tutor][date]) : [];
+                timeSlotSelect.querySelectorAll('option').forEach(option => {
+                    option.disabled = bookedSlots.includes(option.value);
+                });
+            }
+        }
+
+        document.getElementById('date').addEventListener('change', updateAvailableTimeSlots);
+        document.getElementById('tutor').addEventListener('change', updateAvailableTimeSlots);
+
+        form.addEventListener('submit', event => {
+            event.preventDefault();
+
+            const formData = new FormData(form);
+            const tutor = formData.get('tutor');
+            const location = formData.get('location');
+            const subject = formData.get('subject');
+            const date = formData.get('date');
+            const timeSlot = formData.get('timeSlot');
+            const student = formData.get('student');
+            const bookingInfo = `${student}, ${location}, ${subject}`;
+
+            if (!bookings[tutor]) {
+                bookings[tutor] = {};
+            }
+
+            if (!bookings[tutor][date]) {
+                bookings[tutor][date] = {};
+            }
+
+            if (bookings[tutor][date][timeSlot]) {
+                alert('This time slot is already booked. Please choose another one.');
+                return;
+            }
+
+            bookings[tutor][date][timeSlot] = bookingInfo;
+
+            renderTables();
+
+            form.reset();
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            currentWeekStart = getWeekStart(new Date());
+            renderTables();
+        });
+    </script>
+</body>
+</html>
